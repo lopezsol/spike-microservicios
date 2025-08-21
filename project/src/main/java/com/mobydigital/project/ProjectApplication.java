@@ -8,7 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients
 public class ProjectApplication {
 
 	public static void main(String[] args) {
