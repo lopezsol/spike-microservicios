@@ -18,6 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
+    // Un usuario puede tener varios proyectos
     @ElementCollection
     private List<Long> idsProject;
 }

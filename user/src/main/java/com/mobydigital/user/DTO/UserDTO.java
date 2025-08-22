@@ -1,5 +1,7 @@
 package com.mobydigital.user.DTO;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,9 @@ public class UserDTO {
     private Long id;
     private String name;
 
-    private Long idProject;
-    private String nameProject;
+    // private Long idProject;
+    // private String nameProject;
+
+    // Incluimos la lista de proyectos
+    List<ProjectDTO> projects;
 }
