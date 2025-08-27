@@ -1,6 +1,5 @@
 package com.mobydigital.georef.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.mobydigital.georef.model.MunicipioResponse;
@@ -36,11 +35,9 @@ public class GeorefService {
         return reponse.getMunicipios();
     }
 
-    public List<Provincia> getProvinciaById(Long idProvincia) {
+    public Provincia getProvinciaById(Long idProvincia) {
         String url = apiURL + "/provincias?id=" + idProvincia;
-        Provincia[] provincias =  restTemplate.getForObject(url, Provincia[].class);
-        return Arrays.asList(provincias);
+        ProvinciaResponse response =  restTemplate.getForObject(url, ProvinciaResponse.class);
+        return response.getProvincias().get(0);
     }
-
-
 }

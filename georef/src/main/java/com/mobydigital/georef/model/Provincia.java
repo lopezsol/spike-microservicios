@@ -13,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Component
+// La anotación @JsonIgnoreProperties se utiliza para ignorar propiedades desconocidas durante la deserialización JSON
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Provincia {
     private Long id;

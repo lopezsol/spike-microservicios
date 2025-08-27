@@ -26,14 +26,11 @@ public class GeorefController {
 
     @GetMapping("/provincias/{id}")
     public Provincia getProvinciaById(@PathVariable("id") Long idProvincia) {
-        return georefService.getProvinciaById(idProvincia).get(0);
+        return georefService.getProvinciaById(idProvincia);
     }
 
     @GetMapping("/provincias/{id}/localidades")
     public List<Municipio> getLocalidadesByProvinciaId(@PathVariable("id") Long idProvincia) {
         return georefService.getLocalidadesByProvinciaId(idProvincia);
     }
-    
-    
-
 }

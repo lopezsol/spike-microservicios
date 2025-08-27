@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+// Esta clase es para obtener la respuesta de la API de provincias
 public class ProvinciaResponse {
     private List<Provincia> provincias;
 

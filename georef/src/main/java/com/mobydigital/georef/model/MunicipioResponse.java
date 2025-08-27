@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+// La lista de municipios que proviene de la API
 public class MunicipioResponse {
     @JsonProperty("municipios")
     private List<Municipio> municipios;
