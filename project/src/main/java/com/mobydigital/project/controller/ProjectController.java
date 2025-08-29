@@ -13,11 +13,6 @@ public class ProjectController {
     @Autowired
     ProjectService projectService;
 
-//    @GetMapping
-//    public String obtenerNombre(){
-//        return "Adios mundo";
-//    }
-
     @GetMapping
     public List<Project> findAll(){
         return projectService.findAll();

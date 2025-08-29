@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.mobydigital.georef.model.Municipio;
+
+import com.mobydigital.georef.model.Localidad;
 import com.mobydigital.georef.model.Provincia;
 import com.mobydigital.georef.service.GeorefService;
 
@@ -30,7 +31,13 @@ public class GeorefController {
     }
 
     @GetMapping("/provincias/{id}/localidades")
-    public List<Municipio> getLocalidadesByProvinciaId(@PathVariable("id") Long idProvincia) {
+    public List<Localidad> getLocalidadesByProvinciaId(@PathVariable("id") Long idProvincia) {
         return georefService.getLocalidadesByProvinciaId(idProvincia);
     }
+
+    @GetMapping("/localidades/{id}")
+    public Localidad getLocalidadById(@PathVariable("id") Long idLocalidad) {
+        return georefService.getLocalidadById(idLocalidad);
+    }
+
 }

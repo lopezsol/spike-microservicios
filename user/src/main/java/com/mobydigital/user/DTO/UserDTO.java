@@ -13,11 +13,22 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDTO {
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
 
-    // private Long idProject;
-    // private String nameProject;
+    // Location
+    private ProvinciaDTO province;
+    private LocalidadDTO locality;
 
-    // Incluimos la lista de proyectos
+    // Tecnología actual
+    private String currentTechnology;
+
+    // Referente
+    private String referent;
+    
+    // Talent partner
+    private String talentPartner;
+
+    // Lista de proyectos asociados al usuario
     List<ProjectDTO> projects;
 }

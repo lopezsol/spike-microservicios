@@ -9,5 +9,6 @@ public interface IUserService {
     public List<User> findAll();
     public void createUser(User user);
     public void deleteUser(Long id);
+    public void updateUser(Long id, User updatedUser);
     public UserDTO findUserById(Long id);
 }
