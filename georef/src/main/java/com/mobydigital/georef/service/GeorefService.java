@@ -24,13 +24,13 @@ public class GeorefService {
     }
 
     public List<Provincia> getProvincias() {
-        String url = apiURL + "/provincias";
+        String url = apiURL + "/provincias?orden=nombre";
         ProvinciaResponse response = restTemplate.getForObject(url, ProvinciaResponse.class);
         return response.getProvincias();
     }
 
     public List<Localidad> getLocalidadesByProvinciaId(Long idProvincia) {
-        String url = apiURL + "/localidades?provincia=" + idProvincia + "&max=5000";
+        String url = apiURL + "/localidades?provincia=" + idProvincia + "&max=5000&orden=nombre";
         LocalidadResponse reponse =  restTemplate.getForObject(url, LocalidadResponse.class);
         return reponse.getLocalidades();
     }
