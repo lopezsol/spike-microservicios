@@ -11,4 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 public class LocalidadDTO {
     private String nombre;
+    private Long id;
 }

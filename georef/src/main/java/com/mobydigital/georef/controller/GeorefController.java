@@ -3,10 +3,7 @@ package com.mobydigital.georef.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.mobydigital.georef.model.Localidad;
 import com.mobydigital.georef.model.Provincia;
@@ -16,6 +13,8 @@ import com.mobydigital.georef.service.GeorefService;
 
 @RestController
 @RequestMapping("/locations")
+@CrossOrigin
+
 public class GeorefController {
     @Autowired
     private GeorefService georefService;
