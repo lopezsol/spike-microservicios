@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.mobydigital.user.DTO.LocalidadDTO;
@@ -24,6 +25,9 @@ public class UserService implements IUserService{
     @Autowired
     ProjectAPI projectAPI;
 
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
+
     // Conexión con microservicio georef
     @Autowired
     GeorefAPI georefAPI;
@@ -33,14 +37,26 @@ public class UserService implements IUserService{
         return userRepository.findAll();
     }
 
+    // @Override
+    // public void createUser(User user) {
+    //     userRepository.save(user);
+    // }
     @Override
     public void createUser(User user) {
         userRepository.save(user);
+        kafkaTemplate.send("mentoria-back-topic", "Creado el usuario " + user.getFirstName() + user.getLastName() + " correctamente.");
     }
 
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+        kafkaTemplate.send("mentoria-back-topic", "Eliminado el usuario con ID " + id + " correctamente.");
+    }
+
+    @Override
+    public void addToProject(Long userId, Long projectId) {
+        // AUP UID 2 PID 4
+        kafkaTemplate.send("mentoria-back-topic", "AUP " + "UID " + userId + " PID " + projectId);
     }
 
     @Override
@@ -57,7 +73,10 @@ public class UserService implements IUserService{
             user.setIdsProject(updatedUser.getIdsProject());
         }
         userRepository.save(user);
+        kafkaTemplate.send("mentoria-back-topic", "Actualizado el usuario con ID " + id + " correctamente.");
     }
+
+
 
     @Override
     public UserDTO findUserById(Long id) {
@@ -76,7 +95,6 @@ public class UserService implements IUserService{
 
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
-            // userDTO.setName(user.getName());
             userDTO.setFirstName(user.getFirstName());
             userDTO.setLastName(user.getLastName());
             userDTO.setProvince(provincia);
