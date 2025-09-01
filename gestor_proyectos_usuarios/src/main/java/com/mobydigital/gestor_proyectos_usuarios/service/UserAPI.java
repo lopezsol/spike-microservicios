@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.mobydigital.gestor_proyectos_usuarios.DTO.User;
+import com.mobydigital.gestor_proyectos_usuarios.dto.User;
 
 @FeignClient(name = "user")
 public interface UserAPI {

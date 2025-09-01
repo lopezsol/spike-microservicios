@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import com.mobydigital.gestor_proyectos_usuarios.DTO.Project;
-import com.mobydigital.gestor_proyectos_usuarios.DTO.User;
+import com.mobydigital.gestor_proyectos_usuarios.dto.Project;
+import com.mobydigital.gestor_proyectos_usuarios.dto.User;
 import com.mobydigital.gestor_proyectos_usuarios.service.ProjectAPI;
 import com.mobydigital.gestor_proyectos_usuarios.service.UserAPI;
 

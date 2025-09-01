@@ -1,4 +1,4 @@
-package com.mobydigital.gestor_proyectos_usuarios.DTO;
+package com.mobydigital.gestor_proyectos_usuarios.dto;
 
 import java.util.List;
 

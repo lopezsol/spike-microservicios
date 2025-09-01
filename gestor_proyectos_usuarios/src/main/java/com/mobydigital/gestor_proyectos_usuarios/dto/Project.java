@@ -1,4 +1,4 @@
-package com.mobydigital.gestor_proyectos_usuarios.DTO;
+package com.mobydigital.gestor_proyectos_usuarios.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
