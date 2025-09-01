@@ -16,7 +16,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8081/users/3",
+							"raw": "http://localhost:8081/users/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -24,7 +24,7 @@
 							"port": "8081",
 							"path": [
 								"users",
-								"3"
+								"4"
 							]
 						}
 					},
@@ -37,7 +37,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Solcito\",\r\n    \"idsProject\": [1]\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Eimi\",\r\n    \"lastName\" : \"Quinteros\",\r\n    \"idProvince\": 6,\r\n    \"idLocality\": 635711003,\r\n    \"currentTechnology\": \"Spring Boot\",\r\n    \"referent\": \"Eimi Quinteros\",\r\n    \"talentPartner\": \"Daira Urtubey\",\r\n    \"idsProject\": [1, 2, 3]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,6 +72,35 @@
 							"port": "8081",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"firstName\": \"Sol\",\r\n        \"lastName\": \"López\",\r\n        \"idProvince\": 26,\r\n        \"idLocality\": 26035030,\r\n        \"currentTechnology\": \"Angular\",\r\n        \"referent\": \"Eimi Quinteros\",\r\n        \"talentPartner\": \"Daira Urtubey\",\r\n        \"idsProject\": [3, 4, 5]\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/users/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"users",
+								"3"
 							]
 						}
 					},
@@ -128,7 +157,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Kafka\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Proyecto nuevo\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -180,7 +209,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8085/locations/provincias/82",
+							"raw": "http://localhost:8085/locations/provincias/30",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -189,7 +218,7 @@
 							"path": [
 								"locations",
 								"provincias",
-								"82"
+								"30"
 							]
 						}
 					},
@@ -201,7 +230,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8085/locations/provincias/82/localidades",
+							"raw": "http://localhost:8085/locations/provincias/50/localidades",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -210,8 +239,29 @@
 							"path": [
 								"locations",
 								"provincias",
-								"82",
+								"50",
 								"localidades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localidadById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/locations/localidades/30084070",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"locations",
+								"localidades",
+								"30084070"
 							]
 						}
 					},

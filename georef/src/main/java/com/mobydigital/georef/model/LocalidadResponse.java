@@ -2,22 +2,24 @@ package com.mobydigital.georef.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.stereotype.Component;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.List;
 @Getter
 @Setter
-@Component
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Municipio {
-    @JsonProperty("id")
-    private Long id;
-    @JsonProperty("nombre")
-    private String nombre;
+// La lista de municipios que proviene de la API
+public class LocalidadResponse {
+    @JsonProperty("localidades")
+    private List<Localidad> localidades;
+
+    public List<Localidad> getLocalidades() {
+        return localidades;
+    }
 }
+

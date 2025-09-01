@@ -1,4 +1,4 @@
-package com.mobydigital.user.DTO;
+package com.mobydigital.gestor_proyectos_usuarios.dto;
 
 import java.util.List;
 
@@ -11,24 +11,24 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class User {
     private Long id;
     private String firstName;
     private String lastName;
 
     // Location
-    private ProvinciaDTO province;
-    private LocalidadDTO locality;
+    private Long idProvince;
+    private Long idLocality;
 
     // Tecnología actual
     private String currentTechnology;
 
     // Referente
-    private String referent;
-    
+    private String referent;    
+
     // Talent partner
     private String talentPartner;
 
-    // Lista de proyectos asociados al usuario
-    List<ProjectDTO> projects;
+    // Un usuario puede tener varios proyectos
+    private List<Long> idsProject;
 }

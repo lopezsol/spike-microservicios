@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.mobydigital.user.DTO.LocalidadDTO;
 import com.mobydigital.user.DTO.ProjectDTO;
+import com.mobydigital.user.DTO.ProvinciaDTO;
 import com.mobydigital.user.DTO.UserDTO;
 import com.mobydigital.user.model.User;
+import com.mobydigital.user.repository.GeorefAPI;
 import com.mobydigital.user.repository.ProjectAPI;
 import com.mobydigital.user.repository.UserRepository;
 
@@ -17,23 +21,62 @@ public class UserService implements IUserService{
     @Autowired
     UserRepository userRepository;
 
+    // Conexión con microservicio project
     @Autowired
     ProjectAPI projectAPI;
+
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
+
+    // Conexión con microservicio georef
+    @Autowired
+    GeorefAPI georefAPI;
 
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    // @Override
+    // public void createUser(User user) {
+    //     userRepository.save(user);
+    // }
     @Override
     public void createUser(User user) {
         userRepository.save(user);
+        kafkaTemplate.send("mentoria-back-topic", "Creado el usuario " + user.getFirstName() + user.getLastName() + " correctamente.");
     }
 
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+        kafkaTemplate.send("mentoria-back-topic", "Eliminado el usuario con ID " + id + " correctamente.");
     }
+
+    @Override
+    public void addToProject(Long userId, Long projectId) {
+        // AUP UID 2 PID 4
+        kafkaTemplate.send("mentoria-back-topic", "AUP " + "UID " + userId + " PID " + projectId);
+    }
+
+    @Override
+    public void updateUser(Long id, User updatedUser) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
+            user.setIdProvince(updatedUser.getIdProvince());
+            user.setIdLocality(updatedUser.getIdLocality());
+            user.setCurrentTechnology(updatedUser.getCurrentTechnology());
+            user.setReferent(updatedUser.getReferent());
+            user.setTalentPartner(updatedUser.getTalentPartner());
+            user.setIdsProject(updatedUser.getIdsProject());
+        }
+        userRepository.save(user);
+        kafkaTemplate.send("mentoria-back-topic", "Actualizado el usuario con ID " + id + " correctamente.");
+    }
+
+
 
     @Override
     public UserDTO findUserById(Long id) {
@@ -47,13 +90,20 @@ public class UserService implements IUserService{
                 projects.add(projectAPI.findProjectById(ProjectId));
             }
 
+            ProvinciaDTO provincia = georefAPI.getProvinciaById(user.getIdProvince());
+            LocalidadDTO municipio = georefAPI.getLocalidadById(user.getIdLocality());
+
             UserDTO userDTO = new UserDTO();
             userDTO.setId(user.getId());
-            userDTO.setName(user.getName());
+            userDTO.setFirstName(user.getFirstName());
+            userDTO.setLastName(user.getLastName());
+            userDTO.setProvince(provincia);
+            userDTO.setLocality(municipio);
+            userDTO.setCurrentTechnology(user.getCurrentTechnology());
+            userDTO.setReferent(user.getReferent());
+            userDTO.setTalentPartner(user.getTalentPartner());
             userDTO.setProjects(projects);
 
-            // userDTO.setIdProject(projectDTO.getId());
-            // userDTO.setNameProject(projectDTO.getName());
             return userDTO;
         }
         return null; 
